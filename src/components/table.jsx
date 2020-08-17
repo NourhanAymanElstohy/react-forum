@@ -9,7 +9,7 @@ class Table extends Component {
   };
 
   async componentDidMount() {
-    let { data: employees } = await axios.get(apiEndPoint + "/read.php");
+    let { data: employees } = await axios.get( apiEndPoint + "/read.php");
     employees = employees["data"];
 
     this.setState({ employees });
@@ -23,7 +23,7 @@ class Table extends Component {
   };
 
   handleDelete = async (employee) => {
-    await axios.delete(apiEndPoint+"/delete.php", {
+    await axios.delete( apiEndPoint +"/delete.php", {
       data: {
         id: employee.id,
       },
