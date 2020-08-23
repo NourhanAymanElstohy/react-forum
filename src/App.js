@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Table from './components/table';
 import { Route, Switch, Redirect } from "react-router-dom";
-import Form from './components/form';
+import Form from './components/employeeForm';
 
 class App extends Component {
   render() { 
