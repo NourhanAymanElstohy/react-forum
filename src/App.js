@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
 import Table from './components/table';
+import { Route, Switch, Redirect } from "react-router-dom";
+import Form from './components/form';
 
 class App extends Component {
   render() { 
     return (
-      <Table />
+      <React.Fragment>
+        <Switch>
+          <Route path="/employees" component={Table} />
+          <Route path="/form" component={Form}/>
+          <Redirect from="/" exact to="/employees" />
+      </Switch>
+      </React.Fragment>
     );
   }
 }

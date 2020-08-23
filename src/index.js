@@ -4,10 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import "bootstrap/dist/css/bootstrap.min.css"; 
-import Form from './components/form';
+// import Form from './components/form';
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <div className="container mt-3">
       <div className="row justify-content-center">
         <div className="col">
@@ -15,7 +16,7 @@ ReactDOM.render(
         </div>
       </div>
     </div>
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

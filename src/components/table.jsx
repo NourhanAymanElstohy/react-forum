@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
-
+// import { Route, Link } from 'react-router-dom';
+// import Form from './form';
     
 const apiEndPoint = "http://localhost/html/php/api_task/api";
 class Table extends Component {
@@ -23,14 +24,16 @@ class Table extends Component {
   };
 
   handleDelete = async (employee) => {
+    this.setState({
+      employees: this.state.employees.filter((emp) => emp.id !== employee.id),
+    });
+
     await axios.delete( apiEndPoint +"/delete.php", {
       data: {
         id: employee.id,
       },
     });
-    this.setState({
-      employees: this.state.employees.filter((emp) => emp.id !== employee.id),
-    });
+    
   };
 
   render() {
