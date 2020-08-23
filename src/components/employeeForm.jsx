@@ -22,25 +22,26 @@ class EmployeeForm extends Form {
     if (this.state.employeeId === "new") return;
   }
   
-  doSubmit = ()=>{    
+  doSubmit = async (e) => {   
+    // e.preventDefault(); 
     var body = {
       name: this.state.data.name,
       phone: this.state.data.phone,
       age: this.state.data.age,
     };  
-    
-     axios.post(apiEndPoint + "/create.php",body).then(
+
+    axios.post(apiEndPoint + "/create.php",body).then(
       function (response) {
+        console.log(response);
         if (response.data.message === "Employee added") {
           window.location.href = "/employees";
         }
       }
-     );
-    
+    );
   };
 
   render() {
-    
+
     return (
       <div>
         <h1>Api EmployeeForm</h1>
