@@ -9,8 +9,8 @@ class App extends Component {
     return (
       <React.Fragment>
         <Switch>
+          <Route path="/employees/new" component={EmployeeForm} />
           <Route path="/employees" component={Employees} />
-          <Route path="/employees/new" component={EmployeeForm}/>
           <Redirect from="/" exact to="/employees" />
       </Switch>
       </React.Fragment>
