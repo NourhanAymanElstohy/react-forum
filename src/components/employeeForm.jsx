@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import Input from "./input";
+import React from "react";
 import Joi from 'joi-browser';
 import Form from "./form";
+import axios from "axios";
 
+const apiEndPoint = "http://localhost/html/php/api_task/api";
 class EmployeeForm extends Form {
 
   state = {
     data: { name: "", phone: "", age: "" },
-    errors: {}
+    errors: {},
   };
 
   schema = {
@@ -17,11 +18,25 @@ class EmployeeForm extends Form {
   };
 
   componentDidMount() {
-    const employeeId = this.props.match.params.id;
-    if (employeeId === "new") return;
+    this.state.employeeId = this.props.match.params.id;
+    if (this.state.employeeId === "new") return;
   }
-  doSubmit = () => {
-    console.log("submitted");
+  
+  doSubmit = ()=>{    
+    var body = {
+      name: this.state.data.name,
+      phone: this.state.data.phone,
+      age: this.state.data.age,
+    };  
+    
+     axios.post(apiEndPoint + "/create.php",body).then(
+      function (response) {
+        if (response.data.message === "Employee added") {
+          window.location.href = "/employees";
+        }
+      }
+     );
+    
   };
 
   render() {

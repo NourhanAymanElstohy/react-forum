@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { Route, Link } from 'react-router-dom';
-// import Form from './form';
+import {  Link } from 'react-router-dom';
     
 const apiEndPoint = "http://localhost/html/php/api_task/api";
 class Employees extends Component {
@@ -39,7 +38,7 @@ class Employees extends Component {
   render() {
     return (
       <div>
-        <h3>Employees Employees</h3>
+        <h3>Employees</h3>
         <Link
           className="btn btn-primary btn-sm m-2"
           to="/employees/new"
