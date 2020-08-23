@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from "axios";
-// import { Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 // import Form from './form';
     
 const apiEndPoint = "http://localhost/html/php/api_task/api";
-class Table extends Component {
+class Employees extends Component {
   state = {
     employees: [],
   };
@@ -39,10 +39,13 @@ class Table extends Component {
   render() {
     return (
       <div>
-        <h3>Employees Table</h3>
-        <button className="btn btn-primary btn-sm m-2" onClick={this.handleAdd}>
-          Add
-        </button>
+        <h3>Employees Employees</h3>
+        <Link
+          className="btn btn-primary btn-sm m-2"
+          to="/employees/new"
+        >
+          New Employee
+        </Link>
         <table className="table">
           <thead>
             <tr>
@@ -80,4 +83,4 @@ class Table extends Component {
     );
   }
 }
-export default Table;
+export default Employees;

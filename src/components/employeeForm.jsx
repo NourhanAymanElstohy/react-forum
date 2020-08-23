@@ -16,6 +16,10 @@ class EmployeeForm extends Form {
     age: Joi.number().required().label('Age'),
   };
 
+  componentDidMount() {
+    const employeeId = this.props.match.params.id;
+    if (employeeId === "new") return;
+  }
   doSubmit = () => {
     console.log("submitted");
   };
