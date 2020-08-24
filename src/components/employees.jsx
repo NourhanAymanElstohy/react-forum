@@ -14,12 +14,20 @@ class Employees extends Component {
 
     this.setState({ employees });
   }
-  handleAdd = () => {
-    console.log("Add");
-  };
+  // handleAdd = () => {
+  //   console.log("Add");
+  // };
 
   handleUpdate = async (employee) => {
-    console.log("Update", employee);
+    // console.log("Update", employee);
+    employee.name = "nawara";
+    const { data } = await axios.put(apiEndPoint + '/update.php', employee);
+    const employees = [...this.state.employees];
+    const index = employees.indexOf(employee);
+    employees[index] = { ...employee };
+
+    this.setState({ employees });
+    console.log(employees);
   };
 
   handleDelete = async (employee) => {
@@ -48,6 +56,7 @@ class Employees extends Component {
         <table className="table">
           <thead>
             <tr>
+              <th>#</th>
               <th>Name</th>
               <th>Phone</th>
               <th>Age</th>
@@ -57,16 +66,18 @@ class Employees extends Component {
           <tbody>
             {this.state.employees.map((employee) => (
               <tr key={employee.id}>
+                <td>{employee.id}</td>
                 <td>{employee.name}</td>
                 <td>{employee.phone}</td>
                 <td>{employee.age}</td>
                 <td>
-                  <button
+                  <Link
                     className="btn btn-success ml-3 mr-3 btn-sm"
-                    onClick={() => this.handleUpdate(employee)}
+                    to={`/employees/${employee.id}`}
+                    data={employee}
                   >
                     Update
-                  </button>
+                  </Link>
                   <button
                     className="btn btn-danger btn-sm"
                     onClick={() => this.handleDelete(employee)}

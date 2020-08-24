@@ -10,6 +10,7 @@ class App extends Component {
       <React.Fragment>
         <Switch>
           <Route path="/employees/new" component={EmployeeForm} />
+          <Route path="/employees/:id" component={EmployeeForm} />
           <Route path="/employees" component={Employees} />
           <Redirect from="/" exact to="/employees" />
       </Switch>
