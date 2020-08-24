@@ -22,9 +22,8 @@ class EmployeeForm extends Form {
     if (this.state.employeeId === "new") return;
   }
   
-  doSubmit = async (e) => {   
-    // e.preventDefault(); 
-    var body = {
+  doSubmit = async () => {   
+    const body = {
       name: this.state.data.name,
       phone: this.state.data.phone,
       age: this.state.data.age,
@@ -32,12 +31,12 @@ class EmployeeForm extends Form {
 
     axios.post(apiEndPoint + "/create.php",body).then(
       function (response) {
-        console.log(response);
+        // console.log(response);
         if (response.data.message === "Employee added") {
           window.location.href = "/employees";
         }
       }
-    );
+    );    
   };
 
   render() {
