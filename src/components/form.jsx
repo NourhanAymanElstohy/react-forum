@@ -51,13 +51,13 @@ class Form extends Component {
 
     }
 
-    // renderButton(label) {
-    //     return (
-    //         <button disabled={this.validate()} className="btn btn-primary">
-    //             {label}
-    //         </button>
-    //     );
-    // }
+    renderButton(label) {
+        return (
+            <button disabled={this.validate()} className="btn btn-primary">
+                {label}
+            </button>
+        );
+    }
 
     renderInput(name, label) {
         const { data, errors } = this.state;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
+
     
 const apiEndPoint = "http://localhost/html/php/api_task/api";
 class Employees extends Component {
@@ -16,16 +17,18 @@ class Employees extends Component {
   }
 
   handleUpdate = async (employee) => {
-    employee.name = "nawara";
-    //const { data } = await axios.put(apiEndPoint + '/update.php', employee);
-    await axios.put(apiEndPoint + '/update.php', employee);
+    // console.log(this.state.data);
+  
+    // employee.name = "nawara";
+    // //const { data } = await axios.put(apiEndPoint + '/update.php', employee);
+    // await axios.put(apiEndPoint + '/update.php', employee);
 
-    const employees = [...this.state.employees];
-    const index = employees.indexOf(employee);
-    employees[index] = { ...employee };
+    // const employees = [...this.state.employees];
+    // const index = employees.indexOf(employee);
+    // employees[index] = { ...employee };
 
-    this.setState({ employees });
-    console.log(employees);
+    // this.setState({ employees });
+    // console.log(employees);
   };
 
   handleDelete = async (employee) => {
@@ -45,10 +48,7 @@ class Employees extends Component {
     return (
       <div>
         <h3>Employees</h3>
-        <Link
-          className="btn btn-primary btn-sm m-2"
-          to="/employees/new"
-        >
+        <Link className="btn btn-primary btn-sm m-2" to="/employees/new">
           New Employee
         </Link>
         <table className="table">
@@ -75,6 +75,7 @@ class Employees extends Component {
                   >
                     Update
                   </Link>
+
                   <button
                     className="btn btn-danger btn-sm"
                     onClick={() => this.handleDelete(employee)}
