@@ -16,21 +16,6 @@ class Employees extends Component {
     this.setState({ employees });
   }
 
-  handleUpdate = async (employee) => {
-    // console.log(this.state.data);
-  
-    // employee.name = "nawara";
-    // //const { data } = await axios.put(apiEndPoint + '/update.php', employee);
-    // await axios.put(apiEndPoint + '/update.php', employee);
-
-    // const employees = [...this.state.employees];
-    // const index = employees.indexOf(employee);
-    // employees[index] = { ...employee };
-
-    // this.setState({ employees });
-    // console.log(employees);
-  };
-
   handleDelete = async (employee) => {
     this.setState({
       employees: this.state.employees.filter((emp) => emp.id !== employee.id),
