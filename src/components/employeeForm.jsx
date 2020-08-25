@@ -18,8 +18,6 @@ class EmployeeForm extends Form {
 
   async componentDidMount() {
     const employeeId = this.props.match.params.id;
-    console.log(employeeId);
-    
     if (employeeId === "new") return;
     else {
       const employee = await this.getEmployee(employeeId);
