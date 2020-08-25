@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
     
 const apiEndPoint = "http://localhost/html/php/api_task/api";
 class Employees extends Component {
@@ -14,14 +14,12 @@ class Employees extends Component {
 
     this.setState({ employees });
   }
-  // handleAdd = () => {
-  //   console.log("Add");
-  // };
 
   handleUpdate = async (employee) => {
-    // console.log("Update", employee);
     employee.name = "nawara";
-    const { data } = await axios.put(apiEndPoint + '/update.php', employee);
+    //const { data } = await axios.put(apiEndPoint + '/update.php', employee);
+    await axios.put(apiEndPoint + '/update.php', employee);
+
     const employees = [...this.state.employees];
     const index = employees.indexOf(employee);
     employees[index] = { ...employee };
@@ -74,7 +72,6 @@ class Employees extends Component {
                   <Link
                     className="btn btn-success ml-3 mr-3 btn-sm"
                     to={`/employees/${employee.id}`}
-                    data={employee}
                   >
                     Update
                   </Link>

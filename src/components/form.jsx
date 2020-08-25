@@ -16,7 +16,7 @@ class Form extends Component {
         for (let item of error.details) {
             errors[item.path[0]] = item.message;
             return errors;
-        }
+        }        
     };
     validateProperty = ({ name, value }) => {
 
@@ -29,7 +29,6 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
         const errors = this.validate();
 
         this.setState({ errors: errors || {} });
@@ -52,20 +51,20 @@ class Form extends Component {
 
     }
 
-    renderButton(label) {
-        return (
-            <button disabled={this.validate()} className="btn btn-primary">
-                {label}
-            </button>
-        );
-    }
+    // renderButton(label) {
+    //     return (
+    //         <button disabled={this.validate()} className="btn btn-primary">
+    //             {label}
+    //         </button>
+    //     );
+    // }
 
     renderInput(name, label) {
         const { data, errors } = this.state;
         return (
             <Input
                 name={name}
-                value={data[name]}
+                value={data[name]}                
                 onChange={this.handleChange}
                 label={label}
                 error={errors[name]}
