@@ -11,7 +11,7 @@ ReactDOM.render(
   <BrowserRouter>
     <div className="container mt-3">
       <div className="row justify-content-center">
-        <div className="col">
+        <div className="col-9">
           <App />
         </div>
       </div>

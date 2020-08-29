@@ -3,10 +3,11 @@ import Joi from 'joi-browser';
 import Form from "./form";
 import axios from "axios"
 
-const apiEndPoint = "http://localhost/html/php/api_task/api";
+const apiEndPoint = "http://localhost/html/php/api_task/api/employee";
 class EmployeeForm extends Form {
   state = {
-    data: { name: "", phone: "", age: "" },
+    data: { name: "", phone: "", age: "", is_mgr: "" },
+    dept: {},
     errors: {},
   };
 
@@ -14,6 +15,8 @@ class EmployeeForm extends Form {
     name: Joi.string().required().label("Name"),
     phone: Joi.number().required().label("Phone"),
     age: Joi.number().required().label("Age"),
+    // is_mgr: Joi.number().required().label("Is manager"),
+    dept_name: Joi.string().required().label("Department"),
   };
 
   async componentDidMount() {
@@ -43,17 +46,17 @@ class EmployeeForm extends Form {
   doSubmit = async () => {
     const employeeId = this.props.match.params.id;
     let body = {
-        name: this.state.data.name,
-        phone: this.state.data.phone,
-        age: this.state.data.age,
+      name: this.state.data.name,
+      phone: this.state.data.phone,
+      age: this.state.data.age,
+      is_mgr: this.state.data.is_mgr,
+      dept_id: this.state.data.dept.id,
     };
-    if (employeeId === "new")
-    {
+    if (employeeId === "new") {
       axios.post(apiEndPoint + "/create.php", body).then(() => {
         this.props.history.push("/employees");
       });
-    }
-    else {
+    } else {
       body.id = this.props.match.params.id;
       await axios.put(apiEndPoint + "/update.php", body).then(() => {
         this.props.history.push("/employees");

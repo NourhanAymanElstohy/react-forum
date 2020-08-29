@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 
     
-const apiEndPoint = "http://localhost/html/php/api_task/api";
+const apiEndPoint = "http://localhost/html/php/api_task/api/employee";
 class Employees extends Component {
   state = {
     employees: [],
@@ -12,7 +12,8 @@ class Employees extends Component {
   async componentDidMount() {
     let { data: employees } = await axios.get( apiEndPoint + "/read.php");
     employees = employees["data"];
-
+    console.log(employees);
+    
     this.setState({ employees });
   }
 
@@ -43,6 +44,8 @@ class Employees extends Component {
               <th>Name</th>
               <th>Phone</th>
               <th>Age</th>
+              <th>Is Manager</th>
+              <th>Department</th>
               <th></th>
             </tr>
           </thead>
@@ -50,9 +53,11 @@ class Employees extends Component {
             {this.state.employees.map((employee) => (
               <tr key={employee.id}>
                 <td>{employee.id}</td>
-                <td>{employee.name}</td>
+                <td>{employee.employee_name}</td>
                 <td>{employee.phone}</td>
                 <td>{employee.age}</td>
+                <td>{employee.is_manager === 0 ? "yes": "No"}</td>
+                <td>{employee.department.dept_name}</td>
                 <td>
                   <Link
                     className="btn btn-success ml-3 mr-3 btn-sm"
