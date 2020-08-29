@@ -17,9 +17,8 @@ class EmployeeForm extends Form {
     name: Joi.string().required().label("Name"),
     phone: Joi.number().required().label("Phone"),
     age: Joi.number().required().label("Age"),
-    is_mgr: Joi.number().required().label("Is manager"),
+    is_mgr: Joi.string().required().label("Is manager"),
     dept_id: Joi.string().required().label("Departments"),
-    // dept_name: Joi.string().required().label("Department"),
   };
 
   async componentDidMount() {
@@ -55,7 +54,7 @@ class EmployeeForm extends Form {
   }
 
   doSubmit = async () => {
-    // console.log(this.state.data);
+    
     const employeeId = this.props.match.params.id;
     let body = {
       name: this.state.data.name,
