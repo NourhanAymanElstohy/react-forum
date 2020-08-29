@@ -12,7 +12,6 @@ class Employees extends Component {
   async componentDidMount() {
     let { data: employees } = await axios.get( apiEndPoint + "/read.php");
     employees = employees["data"];
-    console.log(employees);
     
     this.setState({ employees });
   }

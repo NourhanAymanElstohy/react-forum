@@ -1,13 +1,15 @@
 import React from "react";
 import Joi from 'joi-browser';
 import Form from "./form";
-import axios from "axios"
+import axios from "axios";
 
-const apiEndPoint = "http://localhost/html/php/api_task/api/employee";
+const employeeApiEndPoint = "http://localhost/html/php/api_task/api/employee";
+const departmentApiEndPoint = "http://localhost/html/php/api_task/api/department";
+
 class EmployeeForm extends Form {
   state = {
-    data: { name: "", phone: "", age: "", is_mgr: "" },
-    dept: {},
+    data: { name: "", phone: "", age: "", is_mgr: "", dept_id: "" },
+    depts: [],
     errors: {},
   };
 
@@ -15,11 +17,16 @@ class EmployeeForm extends Form {
     name: Joi.string().required().label("Name"),
     phone: Joi.number().required().label("Phone"),
     age: Joi.number().required().label("Age"),
-    // is_mgr: Joi.number().required().label("Is manager"),
-    dept_name: Joi.string().required().label("Department"),
+    is_mgr: Joi.number().required().label("Is manager"),
+    dept_id: Joi.string().required().label("Departments"),
+    // dept_name: Joi.string().required().label("Department"),
   };
 
   async componentDidMount() {
+    let { data: depts } = await axios.get(departmentApiEndPoint + "/read.php");
+    depts = depts["data"];
+    this.setState({ depts });
+
     const employeeId = this.props.match.params.id;
     if (employeeId === "new") return;
     else {
@@ -32,11 +39,15 @@ class EmployeeForm extends Form {
       name: employee.name,
       phone: employee.phone,
       age: employee.age,
+      dept_id: employee.dept_id,
+      is_mgr: employee.is_mgr,
     };
   }
 
   async getEmployee(id) {
-    let { data: employees } = await axios.get(apiEndPoint + "/read.php");
+    let { data: employees } = await axios.get(
+      employeeApiEndPoint + "/read.php"
+    );
     employees = employees["data"];
     let employee = employees.find((emp) => emp.id === id) || {};
 
@@ -44,6 +55,7 @@ class EmployeeForm extends Form {
   }
 
   doSubmit = async () => {
+    // console.log(this.state.data);
     const employeeId = this.props.match.params.id;
     let body = {
       name: this.state.data.name,
@@ -53,12 +65,12 @@ class EmployeeForm extends Form {
       dept_id: this.state.data.dept.id,
     };
     if (employeeId === "new") {
-      axios.post(apiEndPoint + "/create.php", body).then(() => {
+      axios.post(employeeApiEndPoint + "/create.php", body).then(() => {
         this.props.history.push("/employees");
       });
     } else {
       body.id = this.props.match.params.id;
-      await axios.put(apiEndPoint + "/update.php", body).then(() => {
+      await axios.put(employeeApiEndPoint + "/update.php", body).then(() => {
         this.props.history.push("/employees");
       });
     }
@@ -72,6 +84,8 @@ class EmployeeForm extends Form {
           {this.renderInput("name", "Name")}
           {this.renderInput("phone", "Phone")}
           {this.renderInput("age", "Age")}
+          {this.renderRadio("is_mgr", "Is Manager")}
+          {this.renderSelect("dept_id", "Departments", this.state.depts)}
           {this.renderButton("Submit")}
         </form>
       </div>
