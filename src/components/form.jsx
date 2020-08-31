@@ -11,7 +11,6 @@ class Form extends Component {
     const options = { abortEarly: false };
     const { error } = Joi.validate(this.state.data, this.schema, options);
     if (!error) return null;
-console.log(error);
 
     const errors = {};
     for (let item of error.details) {
@@ -84,7 +83,6 @@ console.log(error);
       <Input
         name={name}
         value={data[name]}
-        type="text"
         onChange={this.handleChange}
         label={label}
         error={errors[name]}

@@ -55,12 +55,12 @@ class Employees extends Component {
                 <td>{employee.employee_name}</td>
                 <td>{employee.phone}</td>
                 <td>{employee.age}</td>
-                <td>{employee.is_manager === 0 ? "yes": "No"}</td>
+                <td>{employee.is_manager === "1" ? "Yes": "No"}</td>
                 <td>{employee.department.dept_name}</td>
                 <td>
                   <Link
                     className="btn btn-success ml-3 mr-3 btn-sm"
-                    to={`/employees/${employee.id}`}
+                    to={`/employees/update/${employee.id}`}
                   >
                     Update
                   </Link>

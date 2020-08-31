@@ -17,7 +17,7 @@ class EmployeeForm extends Form {
     name: Joi.string().required().label("Name"),
     phone: Joi.number().required().label("Phone"),
     age: Joi.number().required().label("Age"),
-    is_mgr: Joi.string().required().label("Is manager"),
+    is_mgr: Joi.required().label("Is manager"),
     dept_id: Joi.number().required().label("Departments"),
   };
 
@@ -69,7 +69,7 @@ class EmployeeForm extends Form {
         this.props.history.push("/employees");
       });
     } else {
-      body.id = this.props.match.params.id;
+      body.id = this.props.match.params.id;      
       await axios.put(employeeApiEndPoint + "/update.php", body).then(() => {
         this.props.history.push("/employees");
       });
