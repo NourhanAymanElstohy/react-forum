@@ -63,18 +63,17 @@ class EmployeeForm extends Form {
       is_mgr: this.state.data.is_mgr,
       dept_id: this.state.data.dept_id,
     };
-    console.log(body);
     
-    // if (employeeId === "new") {
-    //   axios.post(employeeApiEndPoint + "/create.php", body).then(() => {
-    //     this.props.history.push("/employees");
-    //   });
-    // } else {
-    //   body.id = this.props.match.params.id;
-    //   await axios.put(employeeApiEndPoint + "/update.php", body).then(() => {
-    //     this.props.history.push("/employees");
-    //   });
-    // }
+    if (employeeId === "new") {
+      axios.post(employeeApiEndPoint + "/create.php", body).then(() => {
+        this.props.history.push("/employees");
+      });
+    } else {
+      body.id = this.props.match.params.id;
+      await axios.put(employeeApiEndPoint + "/update.php", body).then(() => {
+        this.props.history.push("/employees");
+      });
+    }
   };
 
   render() {
@@ -85,7 +84,7 @@ class EmployeeForm extends Form {
           {this.renderInput("name", "Name")}
           {this.renderInput("phone", "Phone")}
           {this.renderInput("age", "Age")}
-          {this.renderRadio("is_mgr", "Is Manager")}
+          {this.renderSelect("is_mgr", "Is Manager")}
           {this.renderSelect("dept_id", "Departments", this.state.depts)}
           {this.renderButton("Submit")}
         </form>

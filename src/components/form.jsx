@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Joi from 'joi-browser';
 import Input from './common/input';
 import Select from './common/select';
-import Radio from './common/radio';
 class Form extends Component {
   state = {
     data: {},
@@ -60,26 +59,19 @@ console.log(error);
   }
   renderSelect(name, label, options) {
     const { data, errors } = this.state;
+    if (name === "is_mgr") {
+      options = [
+        { id: 0, name: "No" },
+        { id: 1, name: "Yes" },
+      ];
+      
+    }    
     return (
       <Select
         name={name}
         value={data[name]}
         label={label}
         options={options}
-        onChange={this.handleChange}
-        error={errors[name]}
-      />
-    );
-  }
-    
-  renderRadio(name, label) {
-    const { data, errors } = this.state;
-    
-    return (
-      <Radio
-        name={name}
-        label={label}
-        value={data[name]}
         onChange={this.handleChange}
         error={errors[name]}
       />
