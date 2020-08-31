@@ -44,7 +44,7 @@ class Employees extends Component {
               <th>Phone</th>
               <th>Age</th>
               <th>Is Manager</th>
-              <th>Department</th>
+              <th>Departments</th>
               <th></th>
             </tr>
           </thead>

@@ -32,10 +32,12 @@ class EmployeeForm extends Form {
       const employee = await this.getEmployee(employeeId);
       this.setState({ data: this.mapToViewModel(employee) });
     }
+    console.log(this.state.data);
+    
   }
   mapToViewModel(employee) {
     return {
-      name: employee.name,
+      name: employee.employee_name,
       phone: employee.phone,
       age: employee.age,
       dept_id: employee.dept_id,
@@ -54,7 +56,6 @@ class EmployeeForm extends Form {
   }
 
   doSubmit = async () => {
-    
     const employeeId = this.props.match.params.id;
     let body = {
       name: this.state.data.name,
