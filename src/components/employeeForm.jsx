@@ -8,7 +8,7 @@ const departmentApiEndPoint = "http://localhost/html/php/api_task/api/department
 
 class EmployeeForm extends Form {
   state = {
-    data: { name: "", phone: "", age: "", is_mgr: "", dept_id: "" },
+    data: { name: "", phone: "", age: "", is_mgr:"", dept_id: "" },
     depts: [],
     errors: {},
   };
@@ -18,7 +18,7 @@ class EmployeeForm extends Form {
     phone: Joi.number().required().label("Phone"),
     age: Joi.number().required().label("Age"),
     is_mgr: Joi.string().required().label("Is manager"),
-    dept_id: Joi.string().required().label("Departments"),
+    dept_id: Joi.number().required().label("Departments"),
   };
 
   async componentDidMount() {
@@ -61,18 +61,20 @@ class EmployeeForm extends Form {
       phone: this.state.data.phone,
       age: this.state.data.age,
       is_mgr: this.state.data.is_mgr,
-      dept_id: this.state.data.dept.id,
+      dept_id: this.state.data.dept_id,
     };
-    if (employeeId === "new") {
-      axios.post(employeeApiEndPoint + "/create.php", body).then(() => {
-        this.props.history.push("/employees");
-      });
-    } else {
-      body.id = this.props.match.params.id;
-      await axios.put(employeeApiEndPoint + "/update.php", body).then(() => {
-        this.props.history.push("/employees");
-      });
-    }
+    console.log(body);
+    
+    // if (employeeId === "new") {
+    //   axios.post(employeeApiEndPoint + "/create.php", body).then(() => {
+    //     this.props.history.push("/employees");
+    //   });
+    // } else {
+    //   body.id = this.props.match.params.id;
+    //   await axios.put(employeeApiEndPoint + "/update.php", body).then(() => {
+    //     this.props.history.push("/employees");
+    //   });
+    // }
   };
 
   render() {

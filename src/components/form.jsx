@@ -72,17 +72,19 @@ console.log(error);
     );
   }
     
-    renderRadio(name, label) {
-        const { errors } = this.state;
-        return (
-          <Radio
-            name={name}
-            label={label}
-            onChange={this.handleChange}
-            error={errors[name]}
-          />
-        );
-    }
+  renderRadio(name, label) {
+    const { data, errors } = this.state;
+    
+    return (
+      <Radio
+        name={name}
+        label={label}
+        value={data[name]}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
+  }
 
   renderInput(name, label) {
     const { data, errors } = this.state;
@@ -90,6 +92,7 @@ console.log(error);
       <Input
         name={name}
         value={data[name]}
+        type="text"
         onChange={this.handleChange}
         label={label}
         error={errors[name]}
